@@ -1,6 +1,5 @@
 import express from "express";
-import { createServer } from "node:http";
-import wisp from "wisp-server-node";
+import { server as wisp } from "@mercuryworkshop/wisp-js/server";
 
 const app = express();
 
@@ -12,13 +11,11 @@ app.use((req, res) => {
   res.status(404).send("not found");
 });
 
-const server = createServer();
-server.on("request", app);
-server.on("upgrade", (req, socket, head) => {
-  wisp.routeRequest(req, socket, head);
+const PORT = process.env.PORT || 8080;
+const server = app.listen(PORT, () => {
+  console.log("wisp server listening on port " + PORT);
 });
 
-const PORT = process.env.PORT || 8080;
-server.listen(PORT, () => {
-  console.log("wisp server listening on port " + PORT);
+server.on("upgrade", (req, socket, head) => {
+  wisp.routeRequest(req, socket, head);
 });

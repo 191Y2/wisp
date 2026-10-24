@@ -1,14 +1,14 @@
 {
   "name": "wisp-server",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "type": "module",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.21.2",
-    "wisp-server-node": "^1.1.3"
+    "@mercuryworkshop/wisp-js": "^0.5.1",
+    "express": "^4.21.2"
   },
   "engines": {
     "node": ">=18"
